@@ -1,4 +1,6 @@
-        <div class="container_1">
+<?php $page . 'inc.php'?>
+<?php include 'nav.inc.php' ?>
+<div class="container_1">
         
         <div class="con-1">
             <img src="#" alt="">

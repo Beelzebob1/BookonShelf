@@ -1,3 +1,4 @@
+
 <?php
 session_start();
 
@@ -18,42 +19,36 @@ function authenticateUser($username, $password) {
     }
 }
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+if (isset($_POST['login'])) {
     $username = $_POST['username'];
     $password = $_POST['password'];
 
     if (authenticateUser($username, $password)) {
         if ($_SESSION['userRole'] === 'boss') {
-            header('Location: Overzicht_a.php');
+            header('Location: ../index.php?page=overzicht_a');
             exit();
         } elseif ($_SESSION['userRole'] === 'klant') {
-            header('Location: Home.php');
+            header('Location: ../index.php?page=home');
             exit();
         }
     } else {
         $errorMessage = 'Invalid username or password';
     }
 }
+
+
+
 ?>
 
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Login</title>
-    <link rel="stylesheet" href="CSS/main.css">
-</head>
-<body>
+
     <?php if (isset($errorMessage)): ?>
         <p><?php echo $errorMessage; ?></p>
     <?php endif; ?>
-    <form method="POST" action="">
+    <form method="POST" action="loginpagina.inc.php">
         <label for="username">Gebruikersnaam:</label>
         <input type="text" id="username" name="username" required><br><br>
         <label for="password">Wachtwoord:</label>
         <input type="password" id="password" name="password" required><br><br>
-        <input type="submit" value="Login">
+        <input type="submit" name="login" value="Login">
     </form>
-</body>
-</html>
