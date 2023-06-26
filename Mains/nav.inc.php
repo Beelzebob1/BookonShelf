@@ -5,6 +5,6 @@
         <li><a href="index.php?page=reserveerde">Gereserveerde boeken</a></li>
         <li><a href="index.php?page=contact">Contact</a></li>
     </ul>
-    <button class="btn-1"><a href="Mains/loginpagina.inc.php">Log In</a></button>
+    <button class="btn-1"><a href="index.php?page=loginpagina">Log In</a></button>
 </nav>  
 

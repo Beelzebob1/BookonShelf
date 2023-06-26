@@ -6,7 +6,7 @@
 
 body {
   display: flex;
-  background-color: #ad343e;
+  background-color: beige;
   font-family: 'Patrick Hand';
 }
 html {
@@ -82,8 +82,11 @@ html {
   transition: .6s ease;
 }
 .btn-1 a{
+  font-size: 0.9rem;
+  font-weight: bold;
+  text-align: center;
   text-decoration: none;
-  color: rgb(255, 255, 255);
+  color: #e0e0ce;
 }
 .btn-1:hover {
   cursor: pointer;
@@ -139,32 +142,108 @@ html {
   margin-top: 18px;
   margin-right: 20px;
   background-color: transparent;
-  border: 1px solid #e0e0ce;
+  border: transparent;
   border-radius: 15px 15px 15px 15px;
-  color: white;
+  color: rgb(255, 255, 255);
   outline: none;
   transition: .6s ease;
 }
 .btn-2 a{
+  font-size: 0.9rem;
+  font-weight: bold;
+  text-align: center;
   text-decoration: none;
-  color: rgb(255, 255, 255);
+  color: #e0e0ce;
 }
 .btn-2:hover {
   cursor: pointer;
-  background-color: rgb(0, 0, 0);
+  background-color: rgb(255, 255, 255);
   color: rgb(0, 0, 0);
-  box-shadow: 0 0 5px #e0e0ce, 0 0 10px white, 0 0 15px white;
+  box-shadow: 0 0 5px #e0e0ce, 0 0 10px rgb(255, 246, 230), 0 0 15px rgb(255, 237, 201);
   font-weight: bold;
 }
-/*Login*/
-
+.btn-2:hover a{
+  font-size: 0.9rem;
+  font-weight: bold;
+  text-align: center;
+  text-decoration: none;
+  color: #000000;
+}
+/*Login en Registartie*/
 .container {
-  height: 300px;
-  width: 500px;
+  height: 350px;
+  width: 390px;
   padding: 20px;
-  background-color: #fff;
+  margin-top: 14%;
+  margin-left: 37%;
+  background-color: #f0f0e2;
   border-radius: 5px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 9px rgba(0, 0, 0, 0.1);
+}
+.container h2{
+  color: #000000;
+  font-size: medium;
+}
+form {
+  margin-bottom: 20px;
+}
+
+label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: bold;
+  color: rgb(0, 0, 0);
+}
+
+input[type="username"],
+input[type="password"] {
+  width: 3%;
+  padding: 10px;
+  margin-bottom: 20px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.btn-3 {
+  width: 95px;
+  height: 35px;
+  background-color: transparent;
+  border: 1px solid #ffffff;
+  border-radius: 15px 15px 15px 15px;
+  color: rgb(255, 255, 255);
+  outline: none;
+  transition: .6s ease;
+}
+.btn-3 a{
+  font-size: 0.8rem;
+  font-weight: bold;
+  text-align: center;
+  text-decoration: none;
+  color: #000000;
+}
+.btn-3:hover {
+  cursor: pointer;
+  background-color: rgb(255, 255, 255);
+  color: rgb(0, 0, 0);
+  box-shadow: 0 0 5px #e0e0ce, 0 0 10px rgb(255, 246, 230), 0 0 15px rgb(255, 237, 201);
+  font-weight: bold;
+}
+
+p.error-message {
+  color: #ff0000;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.container_1 {
+  height: 350px;
+  width: 390px;
+  padding: 20px;
+  margin-top: 14%;
+  margin-left: 37%;
+  background-color: #f0f0e2;
+  border-radius: 5px;
+  box-shadow: 0 4px 9px rgba(0, 0, 0, 0.1);
 }
 
 form {
@@ -175,10 +254,12 @@ label {
   display: block;
   margin-bottom: 8px;
   font-weight: bold;
+  color: #000000;
 }
 
 input[type="text"],
-input[type="password"] {
+input[type="password"], 
+input[type="email"] {
   width: 100%;
   padding: 10px;
   margin-bottom: 20px;
@@ -189,11 +270,19 @@ input[type="password"] {
 input[type="submit"] {
   width: 100%;
   padding: 8px 10px;
-  background-color: #4caf50;
+  background-color: #000000;
   color: #fff;
   border: none;
   border-radius: 4px;
   cursor: pointer;
+  transition: .6s ease;
+}
+input:hover[type="submit"] {
+  cursor: pointer;
+  background-color: rgb(255, 255, 255);
+  color: rgb(0, 0, 0);
+  box-shadow: 0 0 5px #e0e0ce, 0 0 10px white, 0 0 15px white;
+  font-weight: bold;
 }
 
 p.error-message {
@@ -203,7 +292,7 @@ p.error-message {
 }
 
 /*Home*/
-.container_1{
+.container_2{
   position: absolute;
   display: flex;
   flex-direction: row;
@@ -217,7 +306,7 @@ p.error-message {
   border: 1px solid rgb(0, 0, 0);
   height: 300px;
   width: 300px;
-  margin-left: 40px;
+  left: 40px;
   border-radius: 20px 20px 20px 20px;
 }
 
@@ -234,9 +323,71 @@ p.error-message {
   width: 300px;
   border-radius: 20px 20px 20px 20px;
 }
-/* Boeken */
-.table{
+/* Users */
+
+.user{
+  display: flex;
   position: absolute;
-  top: 200px;
-  left: 300px;
+  margin-top: 18%;
+  margin-left: 33%;
+}
+.user table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+.user td, th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 12px;
+}
+
+.user tr:nth-child(even) {
+  background-color: #dddddd;
+}
+.vrf{
+  width: 140px;
+  height: 41px;
+  background-color: transparent;
+  border: transparent;
+  border-radius: 15px 15px 15px 15px;
+  color: rgb(255, 255, 255);
+  outline: none;
+  transition: .8s ease;
+}
+.vrf a{
+  font-size: 0.8rem;
+  font-weight: bold;
+  text-align: center;
+  text-decoration: none;
+  color: #000000;
+}
+.vrf :hover{
+  cursor: pointer;
+  background-color: rgb(255, 255, 255);
+  color: rgb(0, 0, 0);
+  box-shadow: 0 0 5px #e0e0ce, 0 0 10px rgb(255, 246, 230), 0 0 15px rgb(255, 237, 201);
+  font-weight: bold;
+}
+/* verify*/
+.verify{
+  display: flex;
+  position: absolute;
+  margin-top: 20%;
+  margin-left: 39%;
+}
+.verify table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+.verify td, th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 12px;
+}
+
+.verify tr:nth-child(even) {
+  background-color: #dddddd;
 }

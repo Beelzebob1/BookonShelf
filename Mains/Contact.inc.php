@@ -1,5 +1,4 @@
 <?php $page . 'inc.php'?>
-<?php include 'nav.inc.php' ?>
 <section class="mb-4">
 
     <h2 class="h1-responsive font-weight-bold text-center my-4">Contact ons</h2>
