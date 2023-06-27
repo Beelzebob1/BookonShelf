@@ -1,28 +1,32 @@
 <?php
-    require 'Mains/registratie.inc.php';
-?>
-<?php
-    if (isset($_POST["submit"])){
-        $naam = $_POST["naam"];
-        $gebruikersnaam = $_POST["gebruikersnaam"];
-        $email = $_POST["email"];
-        $wachtwoord = $_POST["wachtwoord"];
-        $errors = array();
-        if(empty($naam) || empty($email) || empty($gebruikersnaam) || empty($wachtwoord)){
-            array_push($errors, "Vul alstublieft de lege plekken in.");
-        }
-        if(!filter_var($email, FILTER_VALIDATE_EMAIL)){
-            array_push($errors, "E-mail niet geldig.");
-        }
-        if(strlen($wachtwoord) < 8){
-            array_push($errors, "Wachtwoord moet minimaal 8 karakters zijn.");
-        }
-        if(count($errors) > 0){
-            foreach($errors as $error){
-                echo "<div class='alert alert-danger'>$error</div>";
+include 'config.php';
+session_start();
+    if(ISSET($_POST['submit'])){
+        $naam = !empty($_POST['naam']) ? trim($_POST['naam']) : null;
+        $email = !empty($_POST['email']) ? trim($_POST['email']) : null;    
+        $gebruikersnaam = !empty($_POST['gebruikersnaam']) ? trim($_POST['gebruikersnaam']) : null;
+        $wachtwoord = !empty($_POST['wachtwoord']) ? trim($_POST['wachtwoord']) : null;
+
+        if($_POST['naam']!= "" || $_POST['email'] != "" || $_POST['gebruikersnaam'] != "" || $_POST['wachtwoord'] != ""){
+            try{
+                $naam = $_POST['naam'];
+                $email = $_POST['email'];
+                $gebruikersnaam = $_POST['gebruikersnaam'];
+                $wachtwoord = $_POST['wachtwoord'];
+                $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+                $sql = "INSERT INTO `users` VALUES ('', '$naam', '$email', '$gebruikersnaam')";
+				$conn->exec($sql);
+			}catch(PDOException $e){
+				echo $e->getMessage();
+			}
+			$_SESSION['message']=array("text"=>"User successfully created.","alert"=>"info");
+			$conn = null;
+			header('location: ../index.php?page=home');
+		}else{
+			echo "
+				<script>alert('Please fill up the required field!')</script>
+				<script>window.location = 'Mains/registratie.inc.php'</script>
+			";
             }
-        } else {
-            echo "<div class='alert alert-success'>Registratie succesvol!</div>";
         }
-    }
 ?>

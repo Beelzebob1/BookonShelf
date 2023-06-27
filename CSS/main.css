@@ -325,69 +325,24 @@ p.error-message {
 }
 /* Users */
 
-.user{
+.users{
   display: flex;
   position: absolute;
-  margin-top: 18%;
-  margin-left: 33%;
+  margin-top: 22%;
+  margin-left: 40%;
 }
-.user table {
+.users table {
   font-family: arial, sans-serif;
   border-collapse: collapse;
   width: 100%;
 }
 
-.user td, th {
+.users td, th {
   border: 1px solid #dddddd;
   text-align: left;
   padding: 12px;
 }
 
-.user tr:nth-child(even) {
-  background-color: #dddddd;
-}
-.vrf{
-  width: 140px;
-  height: 41px;
-  background-color: transparent;
-  border: transparent;
-  border-radius: 15px 15px 15px 15px;
-  color: rgb(255, 255, 255);
-  outline: none;
-  transition: .8s ease;
-}
-.vrf a{
-  font-size: 0.8rem;
-  font-weight: bold;
-  text-align: center;
-  text-decoration: none;
-  color: #000000;
-}
-.vrf :hover{
-  cursor: pointer;
-  background-color: rgb(255, 255, 255);
-  color: rgb(0, 0, 0);
-  box-shadow: 0 0 5px #e0e0ce, 0 0 10px rgb(255, 246, 230), 0 0 15px rgb(255, 237, 201);
-  font-weight: bold;
-}
-/* verify*/
-.verify{
-  display: flex;
-  position: absolute;
-  margin-top: 20%;
-  margin-left: 39%;
-}
-.verify table {
-  border-collapse: collapse;
-  width: 100%;
-}
-
-.verify td, th {
-  border: 1px solid #dddddd;
-  text-align: left;
-  padding: 12px;
-}
-
-.verify tr:nth-child(even) {
+.users tr:nth-child(even) {
   background-color: #dddddd;
 }

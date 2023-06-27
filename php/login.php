@@ -1,48 +1,31 @@
 <?php
 session_start();
+include 'config.php';
 
-function authenticateUser($username, $password) {
-    $adminUsername = 'boss';
-    $adminPassword = 'boss123';
-    $customerUsername = 'klant';
-    $customerPassword = 'klant123';
+if (isset($_POST['submit'])) {
+    $username = !empty($_POST['username']) ? trim($_POST['username']) : null;
+    $password = !empty($_POST['password']) ? trim($_POST['password']) : null;
 
-    if ($username === $adminUsername && $password === $adminPassword) {
-        $_SESSION['userRole'] = 'boss';
-        return true;
-    } elseif ($username === $customerUsername && $password === $customerPassword) {
-        $_SESSION['userRole'] = 'klant';
-        return true;
+    $sql = "SELECT id, username, password, userRole FROM login WHERE username = :username AND password = :password";
+    $stmt = $conn->prepare($sql);
+
+    $stmt->bindValue(':username', $username);
+    $stmt->bindValue(':password', $password);
+
+    $stmt->execute();
+
+    $user = $stmt->fetch(PDO::FETCH_ASSOC);
+
+    if ($user && $user['userRole'] == 'admin') {
+        $_SESSION['userRole'] = 'admin';
+        header('Location: ../index.php?page=overzicht_a');
+        exit();
+    } elseif ($user && $user['userRole'] == 'user') {
+        $_SESSION['userRole'] = 'user';
+        header('Location: ../index.php?page=home');
+        exit();
     } else {
-        return false;
+        echo 'Informatie klopt niet!';
     }
 }
-    if($_SESSION['userRole'] = 'boss'){
-        include 'Mains/nav_1.inc.php';
-    } elseif($_SESSION['userRole'] = 'klant'){
-        include 'Mains/nav_1.inc.php';
-    }
-    else{
-        include 'Mains/nav.inc.php';
-    }
-
-if (isset($_POST['login'])) {
-    $username = $_POST['username'];
-    $password = $_POST['password'];
-
-    if (authenticateUser($username, $password)) {
-        if ($_SESSION['userRole'] === 'boss') {
-            header('Location: index.php?page=overzicht_a');
-            exit();
-        } elseif ($_SESSION['userRole'] === 'klant') {
-            header('Location: index.php?page=home');
-            exit();
-        }
-    } else {
-        $errorMessage = 'Invalid username or password';
-    }
-}
-
-
-
 ?>
