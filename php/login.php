@@ -6,7 +6,7 @@ if (isset($_POST['submit'])) {
     $username = !empty($_POST['username']) ? trim($_POST['username']) : null;
     $password = !empty($_POST['password']) ? trim($_POST['password']) : null;
 
-    $sql = "SELECT id, username, password, userRole FROM login WHERE username = :username AND password = :password";
+    $sql = "SELECT id, username, password, userRole FROM users WHERE username = :username AND password = :password";
     $stmt = $conn->prepare($sql);
 
     $stmt->bindValue(':username', $username);
@@ -19,6 +19,7 @@ if (isset($_POST['submit'])) {
     if ($user && $user['userRole'] == 'admin') {
         $_SESSION['userRole'] = 'admin';
         header('Location: ../index.php?page=overzicht_a');
+        
         exit();
     } elseif ($user && $user['userRole'] == 'user') {
         $_SESSION['userRole'] = 'user';

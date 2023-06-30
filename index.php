@@ -1,4 +1,5 @@
 <?php $page= $_GET ['page'];
+session_start();
 ?>
 <?php
     include_once 'php/config.php'
@@ -15,7 +16,7 @@
     <title>BookOnShelf</title>
 </head>
 <body>
-
+    
     <?php
     include 'Mains/' . $page . '.inc.php';
     ?>

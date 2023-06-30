@@ -1,5 +1,5 @@
 <?php
 
-$query = "SELECT naam, email, gebruikersnaam FROM register";
+$query = "SELECT name, email, username FROM users";
 
 ?>

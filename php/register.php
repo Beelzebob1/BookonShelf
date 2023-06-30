@@ -1,32 +1,27 @@
 <?php
 include 'config.php';
-session_start();
-    if(ISSET($_POST['submit'])){
-        $naam = !empty($_POST['naam']) ? trim($_POST['naam']) : null;
-        $email = !empty($_POST['email']) ? trim($_POST['email']) : null;    
-        $gebruikersnaam = !empty($_POST['gebruikersnaam']) ? trim($_POST['gebruikersnaam']) : null;
-        $wachtwoord = !empty($_POST['wachtwoord']) ? trim($_POST['wachtwoord']) : null;
 
-        if($_POST['naam']!= "" || $_POST['email'] != "" || $_POST['gebruikersnaam'] != "" || $_POST['wachtwoord'] != ""){
-            try{
-                $naam = $_POST['naam'];
-                $email = $_POST['email'];
-                $gebruikersnaam = $_POST['gebruikersnaam'];
-                $wachtwoord = $_POST['wachtwoord'];
-                $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-                $sql = "INSERT INTO `users` VALUES ('', '$naam', '$email', '$gebruikersnaam')";
-				$conn->exec($sql);
-			}catch(PDOException $e){
-				echo $e->getMessage();
-			}
-			$_SESSION['message']=array("text"=>"User successfully created.","alert"=>"info");
-			$conn = null;
-			header('location: ../index.php?page=home');
-		}else{
-			echo "
-				<script>alert('Please fill up the required field!')</script>
-				<script>window.location = 'Mains/registratie.inc.php'</script>
-			";
-            }
-        }
+if (isset($_POST['submit'])) {
+    $name = !empty($_POST['name']) ? trim($_POST['name']) : null;
+    $email = !empty($_POST['email']) ? trim($_POST['email']) : null;
+    $username = !empty($_POST['username']) ? trim($_POST['username']) : null;
+    $password = !empty($_POST['password']) ? trim($_POST['password']) : null;
+
+    $sql = "INSERT INTO users (name, email, username, password, userRole) VALUES (:name, :email, :username, :password, :userRole)";
+    $stmt = $conn->prepare($sql);
+
+    $stmt->bindValue(':name', $name);
+    $stmt->bindValue(':email', $email);
+    $stmt->bindValue(':username', $username);
+    $stmt->bindValue(':password', $password);
+    $stmt->bindValue(':userRole', 'user');
+
+    if ($stmt->execute()) {
+        header('location: ../index.php?page=loginpagina');
+    } else {
+        header('location: ../index.php?page=registratie');
+        echo'Infromatie klopt niet!';
+    }
+}
 ?>
+
