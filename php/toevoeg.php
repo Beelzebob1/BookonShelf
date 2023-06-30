@@ -10,7 +10,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $paginas = !empty($_POST['paginas']) ? trim($_POST['paginas']) : null;
     $examplaren = !empty($_POST['examplaren']) ? trim($_POST['examplaren']) : null;
     $image = !empty($_FILES['img']['name']) ? $_FILES['img']['name'] : null;
-
+        
     $targetDir = "../Pictures/";
     $targetFile = $targetDir . basename($_FILES["img"]["name"]);
     $imageFileType = strtolower(pathinfo($targetFile, PATHINFO_EXTENSION));
@@ -29,12 +29,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $stmt->bindValue(':image', $image);
 
     if ($stmt->execute()) {
-        echo "<div class=\"boek\">";
-        echo "<img src=\"$targetFile\" alt=\"book\">";
-        echo "<h2>'" . $name . "'</h2>";
-        echo "<h3>'By: " . $author . "'</h3>";
-        echo "<button class='bekijken' value='Click'>Bekijken</button>";
-        echo "</div>";
 
         header('location: ../index.php?page=boeken');
         exit(); // Add this line to stop further execution
